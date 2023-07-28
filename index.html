@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta charset="utf-8"/>
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<div class="fa fa-bars" id="menu-bar"></div>
+<a class="logo" href="#">Logo</a>
+<nav class="navbar">
+<a href="#home">Home</a>
+<a href="#product">Product</a>
+<a href="#fearured">Fearured</a>
+</nav>
+<div class="icons">
+<a href="#"><i class="fa fa-heart"></i></a>
+<a href="javascript:void(0);" onclick="navigateToCartPage();"><i class="fa fa-shopping-cart"></i><span id="cart-quantity" style="position: absolute; background-color: red; color: white; border-radius: 50%; padding: 0 5px; font-size: 12px; top: 5px; right: 5px;"></span></a>
+<a href="user.html"><i class="fa fa-user"></i></a>
+</div>
+</header>
+<!--end header-->
+<section class="home" id="home">
+<div class="slide-container active">
+<div class="slide">
+<div class="content">
+<span>Nike Sport Shoes</span>
+<h3>Nike Metcon Shoes</h3>
+<p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit 
+                            Sunt nam adipisci ipsa officiis Amet pariatur eaque soluta 
+                            sit iure neque voluptate.
+                        </p>
+<button class="btn" data-product-id="1" onclick="addToCart(1)">add to cart</button>
+</div>
+<div class="image">
+<img class="shoe" src="img/slide/1.png"/>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide">
+<div class="content">
+<span>Nike Sport Shoes</span>
+<h3>Nike Metcon Shoes</h3>
+<p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit 
+                            Sunt nam adipisci ipsa officiis Amet pariatur eaque soluta 
+                            sit iure neque voluptate.
+                        </p>
+<button class="btn" data-product-id="2" onclick="addToCart(2)">add to cart</button>
+</div>
+<div class="image">
+<img class="shoe" src="img/slide/2.png"/>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide">
+<div class="content">
+<span>Nike Sport Shoes</span>
+<h3>Nike Metcon Shoes</h3>
+<p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit 
+                            Sunt nam adipisci ipsa officiis Amet pariatur eaque soluta 
+                            sit iure neque voluptate.
+                        </p>
+<button class="btn" data-product-id="3" onclick="addToCart(3)">add to cart</button>
+</div>
+<div class="image">
+<img class="shoe" src="img/slide/3.png"/>
+</div>
+</div>
+</div>
+<div class="slide-container">
+<div class="slide">
+<div class="content">
+<span>Nike Sport Shoes</span>
+<h3>Nike Metcon Shoes</h3>
+<p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit 
+                            Sunt nam adipisci ipsa officiis Amet pariatur eaque soluta 
+                            sit iure neque voluptate.
+                        </p>
+<button class="btn" data-product-id="4" onclick="addToCart(4)">add to cart</button>
+</div>
+<div class="image">
+<img class="shoe" src="img/slide/4.png"/>
+</div>
+</div>
+</div>
+<div class="fa fa-angle-left" id="prev" onclick="prev();"></div>
+<div class="fa fa-angle-right" id="next" onclick="next();"></div>
+</section>
+<!--end home-->
+<section class="product" id="product">
+<h1 class="heading">latest <span>Products</span></h1>
+<div class="box-container">
+<div class="box">
+<div class="icons">
+<a class="fa fa-heart" href="#"></a>
+<a class="fa fa-share" href="#"></a>
+<a class="fa fa-eye" href="#"></a>
+</div>
+<div class="content">
+<img alt="" src="img/product4/1.jpg"/>
+<h3>Nike Shoes</h3>
+<div class="price">$200 <span>$150</span></div>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+</div>
+</div>
+<div class="box">
+<div class="icons">
+<a class="fa fa-heart" href="#"></a>
+<a class="fa fa-share" href="#"></a>
+<a class="fa fa-eye" href="#"></a>
+</div>
+<div class="content">
+<img alt="" src="img/product4/2.jpg"/>
+<h3>Nike Shoes</h3>
+<div class="price">$200 <span>$150</span></div>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+</div>
+</div>
+<div class="box">
+<div class="icons">
+<a class="fa fa-heart" href="#"></a>
+<a class="fa fa-share" href="#"></a>
+<a class="fa fa-eye" href="#"></a>
+</div>
+<div class="content">
+<img alt="" src="img/product4/3.jpg"/>
+<h3>Nike Shoes</h3>
+<div class="price">$200 <span>$150</span></div>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+</div>
+</div>
+<div class="box">
+<div class="icons">
+<a class="fa fa-heart" href="#"></a>
+<a class="fa fa-share" href="#"></a>
+<a class="fa fa-eye" href="#"></a>
+</div>
+<div class="content">
+<img alt="" src="img/product4/5.jpg"/>
+<h3>Nike Shoes</h3>
+<div class="price">$200 <span>$150</span></div>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+</div>
+</div>
+<div class="box">
+<div class="icons">
+<a class="fa fa-heart" href="#"></a>
+<a class="fa fa-share" href="#"></a>
+<a class="fa fa-eye" href="#"></a>
+</div>
+<div class="content">
+<img alt="" src="img/product4/7.png"/>
+<h3>Nike Shoes</h3>
+<div class="price">$200 <span>$150</span></div>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+</div>
+</div>
+<div class="box">
+<div class="icons">
+<a class="fa fa-heart" href="#"></a>
+<a class="fa fa-share" href="#"></a>
+<a class="fa fa-eye" href="#"></a>
+</div>
+<div class="content">
+<img alt="" src="img/product4/8.png"/>
+<h3>Nike Shoes</h3>
+<div class="price">$200 <span>$150</span></div>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!--end product-->
+<section class="featured" id="fearured">
+<h1 class="heading">New <span>Product</span></h1>
+<div class="row">
+<div class="image-container">
+<div class="small-image">
+<img alt="" class="featured-image-1" src="img/product1/1.jpg"/>
+<img alt="" class="featured-image-1" src="img/product1/2.jpg"/>
+<img alt="" class="featured-image-1" src="img/product1/3.jpg"/>
+<img alt="" class="featured-image-1" src="img/product1/4.jpg"/>
+</div>
+<div class="big-image">
+<img alt="" class="big-image-1" src="img/product1/1.jpg"/>
+</div>
+</div>
+<div class="content">
+<h3>new nike airmac shoes</h3>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+<p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Fugit officiis omnis quo laboriosam velit culpa ex illo, error enim nostrum?
+                    </p>
+<div class="price">$90 <span>$120</span></div>
+<button class="btn" data-product-id="1" onclick="addToCart(1)">add to cart</button>
+</div>
+</div>
+<div class="row">
+<div class="image-container">
+<div class="small-image">
+<img alt="" class="featured-image-2" src="img/product2/1.jpg"/>
+<img alt="" class="featured-image-2" src="img/product2/2.jpg"/>
+<img alt="" class="featured-image-2" src="img/product2/3.jpg"/>
+<img alt="" class="featured-image-2" src="img/product2/4.jpg"/>
+</div>
+<div class="big-image">
+<img alt="" class="big-image-2" src="img/product2/1.jpg"/>
+</div>
+</div>
+<div class="content">
+<h3>new nike airmac shoes</h3>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+<p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Fugit officiis omnis quo laboriosam velit culpa ex illo, error enim nostrum?
+                    </p>
+<div class="price">$90 <span>$120</span></div>
+<button class="btn" data-product-id="1" onclick="addToCart(1)">add to cart</button>
+</div>
+</div>
+<div class="row">
+<div class="image-container">
+<div class="small-image">
+<img alt="" class="featured-image-3" src="img/product3/1.jpg"/>
+<img alt="" class="featured-image-3" src="img/product3/2.jpg"/>
+<img alt="" class="featured-image-3" src="img/product3/3.jpg"/>
+<img alt="" class="featured-image-3" src="img/product3/4.jpg"/>
+</div>
+<div class="big-image">
+<img alt="" class="big-image-3" src="img/product3/1.jpg"/>
+</div>
+</div>
+<div class="content">
+<h3>new nike airmac shoes</h3>
+<div class="stars">
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+<i class="fa fa-star"></i>
+</div>
+<p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Fugit officiis omnis quo laboriosam velit culpa ex illo, error enim nostrum?
+                    </p>
+<div class="price">$90 <span>$120</span></div>
+<button class="btn" data-product-id="1" onclick="addToCart(1)">add to cart</button>
+</div>
+</div>
+</section>
+<!--end featured-->
+<!--Start news-->
+<section class="news" id="news">
+<div class="content">
+<h3>monthly news letter</h3>
+<p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Fuga sed itaque ducimus maxime facere nihil expedita non sunt? Nostrum, voluptatem?
+                </p>
+<form action="">
+<input class="email" placeholder="please enter your email" type="email"/>
+<input class="btn" type="submit" value="save"/>
+</form>
+</div>
+</section>
+<!--end news-->
+<script src="js/script.js"></script>
+<script>
+        let cart = {};
+
+        function updateCartQuantity() {
+            let totalItems = 0;
+            for (let id in cart) {
+                totalItems += cart[id];
+            }
+            // Update the cart quantity indicator
+            document.getElementById('cart-quantity').textContent = totalItems || "";
+        }
+
+        function addToCart(productId) {
+            if (cart[productId]) {
+                cart[productId] += 1;
+            } else {
+                cart[productId] = 1;
+            }
+            updateCartQuantity();
+            alert("Item added to cart!");
+        }
+
+        // Initial update of cart quantity (in case items are already in cart)
+        updateCartQuantity();
+</script><script>
+function navigateToCartPage() {
+    let serializedCart = encodeURIComponent(JSON.stringify(cart));
+    window.location.href = "cart.html?cart=" + serializedCart;
+}
+</script>
+</body>
+</html>

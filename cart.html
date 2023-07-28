@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<title>Cart</title>
+<style>
+        .cart-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            
+        }
+        .cart-item img {
+            width: 100px;
+            margin-right: 15px;
+        }
+        .remove-btn {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+<style>
+
+    .carts{
+         margin-top: 10%;
+    }
+
+    .carts h2{
+        display: flex;
+        justify-content: center;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+    }
+
+    #cart-items {
+        margin-top: 80px; /* Assuming the navbar height is around 80px */
+        padding: 20px;
+        position: relative;
+        display: inherit;
+        
+    }
+
+    #cart-items div {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 15px;
+        margin-right: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background-color: rgb(231, 231, 231);
+    }
+    
+   
+
+    #cart-items img {
+        margin-right: 15px;
+    }
+
+    #cart-items span {
+        margin-right: 50px;
+    }
+</style>
+<style>
+  .quantity-control {
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    height: 30px;
+}
+
+.quantity-input {
+    width: 40px;
+    height: auto;
+}
+
+.remove-icon {
+    color: rgb(129, 128, 128);
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    position: relative;
+    
+}
+
+
+#content-wrapper {
+    position: relative; /* Makes it the reference for absolutely positioned children */
+    padding-right: 220px; /* To ensure space for the price-summary */
+}
+
+#price-summary {
+    position: absolute;
+    top: 10%;
+    right: 20px;
+    width: 241px;
+    border: 1px solid #b3a7a7;
+    padding: 10px;
+    background-color: #fff;
+}
+#price-summary div {
+    display: flex;     
+    justify-content: space-between; 
+    margin-bottom: 5px; 
+}
+
+
+
+</style>
+
+<style>
+
+
+    .cartb{
+        margin-top: 5%;
+        margin-left: 20px;
+    }
+    
+  button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #09816d; 
+    color: #FFFFFF;    
+        
+}
+
+button:hover {
+    background-color: #083520; 
+}
+
+
+    button:first-child {
+        margin-left: 0;
+    }
+    
+</style>
+</style></head>
+<body>
+<header>
+<a class="logo" href="#">Logo</a>
+<nav class="navbar">
+<a href="index.html">Home</a>
+</nav>
+</header>
+<section class="carts">
+<h2>Your Cart</h2>
+<div id="content-wrapper">
+    <div id="cart-items">
+    <!-- Cart items will be dynamically added here using JavaScript -->
+    </div>
+    <div id="price-summary">
+        <div>
+            <span>Subtotal:</span> <span id="subtotal">$0.00</span>
+        </div>
+        <div>
+            <span>Tax (10%):</span> <span id="tax">$0.00</span>
+        </div>
+        <div>
+            <span>Shipping:</span> <span id="shipping">$10.00</span> <!-- Assuming a flat rate for shipping -->
+        </div>
+        <div>
+            <span>Total:</span> <span id="total">$0.00</span>
+        </div>
+    </div>
+
+
+<div class="cartb" style="display: flex; "><button onclick="continueShopping()">Continue Shopping</button><button onclick="checkout()">Checkout</button></div><div></div><div></div>
+</div>
+</section>
+<script>
+window.onload = function() {
+    // Function to get URL parameters
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\[').replace(/[\]]/, '\]');
+        var regex = new RegExp('[\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    let serializedCart = getUrlParameter('cart');
+    if (serializedCart) {
+        let cartData = JSON.parse(serializedCart);
+        let cartContainer = document.getElementById('cart-items');
+        
+        // Assuming you have a products data structure (this is just a sample)
+        let products = {
+            1: {name: "Nike Metcon Shoes", image: "img/slide/1.png", price: 200},
+            2: {name: "Nike Sport Shoes", image: "img/slide/2.png", price: 220},
+            // Add other products similarly
+        };
+
+        for (let productId in cartData) {
+            let product = products[productId];
+            if (product) {
+                let itemDiv = document.createElement('div');
+                itemDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" width="50">
+                    <span>${product.name}</span>
+                    <div class="quantity-control" data-product-id="PRODUCT_ID">
+                        <label for="quantity-${productId}">Quantity:</label>
+                        <input type="number" id="quantity-${productId}" min="1" max="10" value="${cartData[productId]}" data-product-id="${productId}" class="quantity-input">
+                    </div>
+                    <span class="item-price" data-product-id-price="${productId}">Price: ${product.price * cartData[productId]}</span>
+
+                    <i class="fa fa-trash remove-icon" onclick="removeCartItem(\'PRODUCT_ID\')" onclick="removeFromCart('${productId}')"></i>
+                `;
+                cartContainer.appendChild(itemDiv);
+            }
+            document.addEventListener('input', function(event) {
+                if (event.target && event.target.classList.contains('quantity-input')) {
+                    const newQuantity = parseInt(event.target.value, 10);
+                    const productId = event.target.getAttribute('data-product-id');
+                    cartData[productId] = newQuantity;
+
+                    // Update the individual item's price display
+                    const product = products[productId];
+                    if (product) {
+                        const itemPriceDisplay = document.querySelector(`[data-product-id-price="${productId}"]`);
+                        if (itemPriceDisplay) {
+                            itemPriceDisplay.textContent = `Price: $${(product.price * newQuantity).toFixed(2)}`;
+                        }
+                    }
+
+                    // Update the price summary
+                    updatePriceSummary();
+                    
+                }
+            });
+
+
+        function updatePriceSummary() {
+            const subtotal = Object.keys(cartData).reduce((sum, id) => {
+                const product = products[productId];
+                return sum + (product.price * cartData[id]);
+            }, 0);
+
+            const tax = subtotal * 0.1; // 10% tax
+            const shipping = 10.00; // Flat rate shipping
+            const total = subtotal + tax + shipping;
+
+            document.getElementById('subtotal').textContent = "$" + subtotal.toFixed(2);
+            document.getElementById('tax').textContent = "$" + tax.toFixed(2);
+            document.getElementById('shipping').textContent = "$" + shipping.toFixed(2);
+            document.getElementById('total').textContent = "$" + total.toFixed(2);
+        }
+
+        
+
+        updatePriceSummary();
+       
+    }
+
+
+}
+}
+</script><script>
+        let cart = {};  
+        function removeFromCart(productId) {
+            delete cart[productId];
+            displayCartItems();
+        }
+
+
+        
+        const products = [{'id': '1', 'name': 'Nike Metcon Shoes', 'price': '$200', 'image': 'img/default.png'}, {'id': '2', 'name': 'Nike Metcon Shoes', 'price': '$200', 'image': 'img/slide/1.png'}, {'id': '3', 'name': 'Nike Metcon Shoes', 'price': '$200', 'image': 'img/slide/2.png'}, {'id': '1', 'name': 'Nike Metcon Shoes', 'price': '$200', 'image': 'img/slide/2.png'}, {'id': '1', 'name': 'Nike Metcon Shoes', 'price': '$200', 'image': 'img/slide/2.png'}, {'id': '4', 'name': 'Nike Metcon Shoes', 'price': '$200', 'image': 'img/slide/3.png'}, {'id': '1', 'name': 'new nike airmac shoes', 'price': '$90', 'image': 'img/slide/4.png'}, {'id': '1', 'name': 'new nike airmac shoes', 'price': '$90', 'image': 'img/slide/4.png'}, {'id': '1', 'name': 'new nike airmac shoes', 'price': '$0', 'image': 'img/slide/4.png'}];
+
+       
+        displayCartItems();
+    </script><script>
+
+    
+
+    function continueShopping() {
+        
+        location.href = "index.html";
+    }
+
+    function checkout() {
+    
+
+
+    window.location.href = 'checkout.html';
+}
+
+</script>
+
+</script>
+
+<script>
+function removeCartItem(productId) {
+    // Find the cart item element using the product ID
+    const quantityControl = document.querySelector(`[data-product-id="${productId}"]`);
+    
+    if (quantityControl) {
+        // Target the parent cart item element for removal
+        const cartItem = quantityControl.parentElement;
+        cartItem.remove();
+        
+        // Update the price summary
+        updatePriceSummary();
+    }
+}
+
+function updatePriceSummary() {
+    // Calculate the new subtotal, tax, and total based on the remaining cart items
+    const itemPrices = document.querySelectorAll('.item-price');
+    let subtotal = 0;
+    itemPrices.forEach(priceElem => {
+        const priceValue = parseFloat(priceElem.textContent.replace('Price: $', ''));
+        subtotal += priceValue;
+    });
+
+    const tax = subtotal * 0.1; // Assuming 10% tax
+    const shipping = 10.00; // Assuming a flat rate for shipping
+    const total = subtotal + tax + shipping;
+
+    document.getElementById('subtotal').textContent = "$" + subtotal.toFixed(2);
+    document.getElementById('tax').textContent = "$" + tax.toFixed(2);
+    document.getElementById('shipping').textContent = "$" + shipping.toFixed(2);
+    document.getElementById('total').textContent = "$" + total.toFixed(2);
+}
+
+function displayInOrderSummary() {
+    const cartItems = document.getElementById('cart-items');
+    const orderSummary = document.getElementById('order-summary');
+
+    // Clear the existing order summary content
+    while (orderSummary.firstChild) {
+        orderSummary.removeChild(orderSummary.firstChild);
+    }
+
+    // Create a deep clone of the cart items
+    const clonedCartItems = cartItems.cloneNode(true);
+    orderSummary.appendChild(clonedCartItems);
+}
+</script>
+</body>
+</html>

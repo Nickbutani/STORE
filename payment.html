@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Page</title>
+<!-- Assuming similar styles as the checkout.html. You can customize this further -->
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<style>
+.checkout-header {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #eee;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fafafa;
+    margin-top: 7%;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+</style><style>
+body {
+    font-family:  sans-serif;
+    background: linear-gradient(to bottom, #f4f4f9, #e1e2e5);
+    color: #333;
+    height: 1100px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.form-section {
+    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 1000px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    height: auto;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 1.5em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    color: #555;
+}
+
+input[type="text"]:focus {
+    border-color: #007BFF;
+    box-shadow: 0px 2px 8px rgba(0, 123, 255, 0.15);
+    outline: none;
+}
+
+input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+button {
+    padding: 14px 22px;
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    background: #007BFF;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    width: 95%;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.checkout-header {
+    text-align: center;
+    font-size: 2.4em;
+    margin-bottom: 35px;
+    color: #333;
+    font-weight: 600;
+}
+
+h3{
+    font-size: 2rem;
+}
+
+.form-group label{
+    font-size: 1.5rem;
+}
+
+.form-group input{
+    height: 25px;
+    width: 95%;
+}
+
+.otp-send {
+    display: block ruby;
+    
+}
+
+.otp-send input{
+   
+    width: 50%;
+}
+.otp-send button{
+    width: 50%;
+   
+}
+
+
+</style></head>
+<header>
+<div class="fa fa-bars" id="menu-bar"></div>
+<a class="logo" href="#">Logo</a>
+<nav class="navbar">
+<a href="#home">Home</a>
+<a href="#product">Product</a>
+<a href="#fearured">Fearured</a>
+</nav>
+<div class="icons">
+<a href="#"><i class="fa fa-heart"></i></a>
+<a href="javascript:void(0);" onclick="navigateToCartPage();"><i class="fa fa-shopping-cart"></i><span id="cart-quantity" style="position: absolute; background-color: red; color: white; border-radius: 50%; padding: 0 5px; font-size: 12px; top: 5px; right: 5px;"></span></a>
+<a href="user.html"><i class="fa fa-user"></i></a>
+</div>
+</header>
+<body>
+
+<div class="headiing">
+<h1 class="checkout-header">Payment Details</h1>
+</div>
+<div class="form-section" style="margin-top: -390px;">
+<h3>Payment Information</h3>
+<div class="form-group">
+    <label for="fullname">Name on card:</label>
+    <input id="fullname" placeholder="Enter name on card" required="" type="text"/>
+    </div>
+<div class="form-group">
+<label for="cardNumber">Card Number:</label>
+<input id="cardNumber" placeholder="Enter card number" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="expiryDate">Expiry Date:</label>
+<input id="expiryDate" placeholder="MM/YY" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="cvv">CVV:</label>
+<input id="cvv" placeholder="Enter CVV" required="" type="text"/>
+</div>
+<button type="button">Submit Payment</button>
+<div class="otp-div" style="display: none;">
+<select id="countryCode"><option>+1</option><option>+91</option><option>+44</option></select>
+<input id="phoneNumber" placeholder="Enter phone number" required="True" type="text"/>
+<div class="otp-send">
+<input id="otp" placeholder="Enter OTP" required="True" type="text"/>
+<button id="sendOtp" onclick="sendOtp">Send OTP</button>
+</div>
+<button id="verifyOtp" onclick="verifyOtp" style="display: none;">Place Order</button>
+</div>
+</div>
+
+<script>
+    // Function to handle sending OTP
+    function sendOtp() {
+        const phoneNumber = document.getElementById('countryCode').value + document.getElementById('phoneNumber').value;
+        
+        // Call to your backend server to send OTP
+        fetch('http://localhost:3000/send-otp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                phoneNumber: phoneNumber
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Display the Verify OTP button once OTP is sent
+                document.getElementById('verifyOtp').style.display = 'block';
+            } else {
+                alert('Failed to send OTP. Please try again.');
+            }
+        });
+    }
+
+    // Function to handle verifying OTP
+    function verifyOtp() {
+        const otp = document.getElementById('otp').value;
+        
+        // Call to your backend server to verify OTP
+        fetch('http://localhost:3000/verify-otp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                phoneNumber: document.getElementById('countryCode').value + document.getElementById('phoneNumber').value,
+                otp: otp
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Proceed with the payment or any other action
+                alert('Order Placed');
+                window.location.href = "index.html";
+            } else {
+                alert('Invalid OTP. Please try again.');
+            }
+        });
+    }
+    // Attach event listeners
+    document.getElementById('sendOtp').addEventListener('click', sendOtp);
+    document.getElementById('verifyOtp').addEventListener('click', verifyOtp);
+</script><script>
+document.addEventListener("DOMContentLoaded", function() {
+    const submitButton = document.querySelector("button[type='button']");
+    const otpDiv = document.querySelector(".otp-div");
+    
+    submitButton.addEventListener("click", function(event) {
+        event.preventDefault();  // Preventing any default form submit action
+        otpDiv.style.display = "block";
+    });
+});
+</script></body>
+</html>
